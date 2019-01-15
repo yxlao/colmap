@@ -41,16 +41,16 @@
 namespace colmap {
 
 struct ImageReaderOptions;
-struct SiftExtractionOptions;
-struct SiftMatchingOptions;
-struct ExhaustiveMatchingOptions;
-struct SequentialMatchingOptions;
-struct VocabTreeMatchingOptions;
-struct SpatialMatchingOptions;
+// struct SiftExtractionOptions;
+// struct SiftMatchingOptions;
+// struct ExhaustiveMatchingOptions;
+// struct SequentialMatchingOptions;
+// struct VocabTreeMatchingOptions;
+// struct SpatialMatchingOptions;
 struct TransitiveMatchingOptions;
 struct BundleAdjustmentOptions;
-struct IncrementalMapperOptions;
-struct RenderOptions;
+// struct IncrementalMapperOptions;
+// struct RenderOptions;
 
 namespace mvs {
 struct PatchMatchOptions;
@@ -119,24 +119,24 @@ class OptionManager {
   std::shared_ptr<std::string> image_path;
 
   std::shared_ptr<ImageReaderOptions> image_reader;
-  std::shared_ptr<SiftExtractionOptions> sift_extraction;
+  // std::shared_ptr<SiftExtractionOptions> sift_extraction;
 
-  std::shared_ptr<SiftMatchingOptions> sift_matching;
-  std::shared_ptr<ExhaustiveMatchingOptions> exhaustive_matching;
-  std::shared_ptr<SequentialMatchingOptions> sequential_matching;
-  std::shared_ptr<VocabTreeMatchingOptions> vocab_tree_matching;
-  std::shared_ptr<SpatialMatchingOptions> spatial_matching;
+  // std::shared_ptr<SiftMatchingOptions> sift_matching;
+  // std::shared_ptr<ExhaustiveMatchingOptions> exhaustive_matching;
+  // std::shared_ptr<SequentialMatchingOptions> sequential_matching;
+  // std::shared_ptr<VocabTreeMatchingOptions> vocab_tree_matching;
+  // std::shared_ptr<SpatialMatchingOptions> spatial_matching;
   std::shared_ptr<TransitiveMatchingOptions> transitive_matching;
 
   std::shared_ptr<BundleAdjustmentOptions> bundle_adjustment;
-  std::shared_ptr<IncrementalMapperOptions> mapper;
+  // std::shared_ptr<IncrementalMapperOptions> mapper;
 
   std::shared_ptr<mvs::PatchMatchOptions> patch_match_stereo;
   std::shared_ptr<mvs::StereoFusionOptions> stereo_fusion;
   std::shared_ptr<mvs::PoissonMeshingOptions> poisson_meshing;
   std::shared_ptr<mvs::DelaunayMeshingOptions> delaunay_meshing;
 
-  std::shared_ptr<RenderOptions> render;
+  // std::shared_ptr<RenderOptions> render;
 
  private:
   template <typename T>

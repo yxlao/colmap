@@ -300,11 +300,11 @@ set(COLMAP_INTERNAL_LIBRARIES
     colmap
     flann
     graclus
-    lsd
-    pba
+    # lsd
+    # pba
     poisson_recon
     sqlite3
-    sift_gpu
+    # sift_gpu
     vlfeat
 )
 

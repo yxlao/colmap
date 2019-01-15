@@ -32,7 +32,7 @@
 set(FOLDER_NAME "optim")
 
 COLMAP_ADD_SOURCES(
-    bundle_adjustment.h bundle_adjustment.cc
+    # bundle_adjustment.h bundle_adjustment.cc
     combination_sampler.h combination_sampler.cc
     least_absolute_deviations.h least_absolute_deviations.cc
     progressive_sampler.h progressive_sampler.cc

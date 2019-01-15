@@ -33,8 +33,8 @@ set(FOLDER_NAME "feature")
 
 COLMAP_ADD_SOURCES(
     extraction.h extraction.cc
-    matching.h matching.cc
-    sift.h sift.cc
+    # matching.h matching.cc
+    # sift.h sift.cc
     types.h types.cc
     utils.h utils.cc
 )

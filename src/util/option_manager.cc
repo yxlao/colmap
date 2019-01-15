@@ -57,20 +57,20 @@ OptionManager::OptionManager() {
   image_path.reset(new std::string());
 
   image_reader.reset(new ImageReaderOptions());
-  sift_extraction.reset(new SiftExtractionOptions());
-  sift_matching.reset(new SiftMatchingOptions());
-  exhaustive_matching.reset(new ExhaustiveMatchingOptions());
-  sequential_matching.reset(new SequentialMatchingOptions());
-  vocab_tree_matching.reset(new VocabTreeMatchingOptions());
-  spatial_matching.reset(new SpatialMatchingOptions());
+  // sift_extraction.reset(new SiftExtractionOptions());
+  // sift_matching.reset(new SiftMatchingOptions());
+  // exhaustive_matching.reset(new ExhaustiveMatchingOptions());
+  // sequential_matching.reset(new SequentialMatchingOptions());
+  // vocab_tree_matching.reset(new VocabTreeMatchingOptions());
+  // spatial_matching.reset(new SpatialMatchingOptions());
   transitive_matching.reset(new TransitiveMatchingOptions());
   bundle_adjustment.reset(new BundleAdjustmentOptions());
-  mapper.reset(new IncrementalMapperOptions());
+  // mapper.reset(new IncrementalMapperOptions());
   patch_match_stereo.reset(new mvs::PatchMatchOptions());
   stereo_fusion.reset(new mvs::StereoFusionOptions());
   poisson_meshing.reset(new mvs::PoissonMeshingOptions());
   delaunay_meshing.reset(new mvs::DelaunayMeshingOptions());
-  render.reset(new RenderOptions());
+  // render.reset(new RenderOptions());
 
   Reset();
 
@@ -79,20 +79,20 @@ OptionManager::OptionManager() {
 }
 
 void OptionManager::ModifyForIndividualData() {
-  mapper->min_focal_length_ratio = 0.1;
-  mapper->max_focal_length_ratio = 10;
-  mapper->max_extra_param = std::numeric_limits<double>::max();
+  // mapper->min_focal_length_ratio = 0.1;
+  // mapper->max_focal_length_ratio = 10;
+  // mapper->max_extra_param = std::numeric_limits<double>::max();
 }
 
 void OptionManager::ModifyForVideoData() {
   const bool kResetPaths = false;
   ResetOptions(kResetPaths);
-  mapper->mapper.init_min_tri_angle /= 2;
-  mapper->ba_global_images_ratio = 1.4;
-  mapper->ba_global_points_ratio = 1.4;
-  mapper->min_focal_length_ratio = 0.1;
-  mapper->max_focal_length_ratio = 10;
-  mapper->max_extra_param = std::numeric_limits<double>::max();
+  // mapper->mapper.init_min_tri_angle /= 2;
+  // mapper->ba_global_images_ratio = 1.4;
+  // mapper->ba_global_points_ratio = 1.4;
+  // mapper->min_focal_length_ratio = 0.1;
+  // mapper->max_focal_length_ratio = 10;
+  // mapper->max_extra_param = std::numeric_limits<double>::max();
   stereo_fusion->min_num_pixels = 15;
 }
 
@@ -101,14 +101,14 @@ void OptionManager::ModifyForInternetData() {
 }
 
 void OptionManager::ModifyForLowQuality() {
-  sift_extraction->max_image_size = 1000;
-  sequential_matching->loop_detection_num_images /= 2;
-  vocab_tree_matching->num_images /= 2;
-  mapper->ba_local_max_num_iterations /= 2;
-  mapper->ba_global_max_num_iterations /= 2;
-  mapper->ba_global_images_ratio *= 1.2;
-  mapper->ba_global_points_ratio *= 1.2;
-  mapper->ba_global_max_refinements = 2;
+  // sift_extraction->max_image_size = 1000;
+  // sequential_matching->loop_detection_num_images /= 2;
+  // vocab_tree_matching->num_images /= 2;
+  // mapper->ba_local_max_num_iterations /= 2;
+  // mapper->ba_global_max_num_iterations /= 2;
+  // mapper->ba_global_images_ratio *= 1.2;
+  // mapper->ba_global_points_ratio *= 1.2;
+  // mapper->ba_global_max_refinements = 2;
   patch_match_stereo->max_image_size = 1000;
   patch_match_stereo->window_radius = 4;
   patch_match_stereo->window_step = 2;
@@ -120,14 +120,14 @@ void OptionManager::ModifyForLowQuality() {
 }
 
 void OptionManager::ModifyForMediumQuality() {
-  sift_extraction->max_image_size = 1600;
-  sequential_matching->loop_detection_num_images /= 1.5;
-  vocab_tree_matching->num_images /= 1.5;
-  mapper->ba_local_max_num_iterations /= 1.5;
-  mapper->ba_global_max_num_iterations /= 1.5;
-  mapper->ba_global_images_ratio *= 1.1;
-  mapper->ba_global_points_ratio *= 1.1;
-  mapper->ba_global_max_refinements = 2;
+  // sift_extraction->max_image_size = 1600;
+  // sequential_matching->loop_detection_num_images /= 1.5;
+  // vocab_tree_matching->num_images /= 1.5;
+  // mapper->ba_local_max_num_iterations /= 1.5;
+  // mapper->ba_global_max_num_iterations /= 1.5;
+  // mapper->ba_global_images_ratio *= 1.1;
+  // mapper->ba_global_points_ratio *= 1.1;
+  // mapper->ba_global_max_refinements = 2;
   patch_match_stereo->max_image_size = 1600;
   patch_match_stereo->window_radius = 4;
   patch_match_stereo->window_step = 2;
@@ -139,24 +139,24 @@ void OptionManager::ModifyForMediumQuality() {
 }
 
 void OptionManager::ModifyForHighQuality() {
-  sift_extraction->estimate_affine_shape = true;
-  sift_extraction->max_image_size = 2400;
-  sift_matching->guided_matching = true;
-  mapper->ba_local_max_num_iterations = 30;
-  mapper->ba_local_max_refinements = 3;
-  mapper->ba_global_max_num_iterations = 75;
+  // sift_extraction->estimate_affine_shape = true;
+  // sift_extraction->max_image_size = 2400;
+  // sift_matching->guided_matching = true;
+  // mapper->ba_local_max_num_iterations = 30;
+  // mapper->ba_local_max_refinements = 3;
+  // mapper->ba_global_max_num_iterations = 75;
   patch_match_stereo->max_image_size = 2400;
   stereo_fusion->max_image_size = 2400;
 }
 
 void OptionManager::ModifyForExtremeQuality() {
   // Most of the options are set to extreme quality by default.
-  sift_extraction->estimate_affine_shape = true;
-  sift_extraction->domain_size_pooling = true;
-  sift_matching->guided_matching = true;
-  mapper->ba_local_max_num_iterations = 40;
-  mapper->ba_local_max_refinements = 3;
-  mapper->ba_global_max_num_iterations = 100;
+  // sift_extraction->estimate_affine_shape = true;
+  // sift_extraction->domain_size_pooling = true;
+  // sift_matching->guided_matching = true;
+  // mapper->ba_local_max_num_iterations = 40;
+  // mapper->ba_local_max_refinements = 3;
+  // mapper->ba_global_max_num_iterations = 100;
 }
 
 void OptionManager::AddAllOptions() {
@@ -176,7 +176,7 @@ void OptionManager::AddAllOptions() {
   AddStereoFusionOptions();
   AddPoissonMeshingOptions();
   AddDelaunayMeshingOptions();
-  AddRenderOptions();
+  // AddRenderOptions();
 }
 
 void OptionManager::AddLogOptions() {
@@ -230,40 +230,40 @@ void OptionManager::AddExtractionOptions() {
   AddAndRegisterDefaultOption("ImageReader.camera_mask_path",
                               &image_reader->camera_mask_path);
 
-  AddAndRegisterDefaultOption("SiftExtraction.num_threads",
-                              &sift_extraction->num_threads);
-  AddAndRegisterDefaultOption("SiftExtraction.use_gpu",
-                              &sift_extraction->use_gpu);
-  AddAndRegisterDefaultOption("SiftExtraction.gpu_index",
-                              &sift_extraction->gpu_index);
-  AddAndRegisterDefaultOption("SiftExtraction.max_image_size",
-                              &sift_extraction->max_image_size);
-  AddAndRegisterDefaultOption("SiftExtraction.max_num_features",
-                              &sift_extraction->max_num_features);
-  AddAndRegisterDefaultOption("SiftExtraction.first_octave",
-                              &sift_extraction->first_octave);
-  AddAndRegisterDefaultOption("SiftExtraction.num_octaves",
-                              &sift_extraction->num_octaves);
-  AddAndRegisterDefaultOption("SiftExtraction.octave_resolution",
-                              &sift_extraction->octave_resolution);
-  AddAndRegisterDefaultOption("SiftExtraction.peak_threshold",
-                              &sift_extraction->peak_threshold);
-  AddAndRegisterDefaultOption("SiftExtraction.edge_threshold",
-                              &sift_extraction->edge_threshold);
-  AddAndRegisterDefaultOption("SiftExtraction.estimate_affine_shape",
-                              &sift_extraction->estimate_affine_shape);
-  AddAndRegisterDefaultOption("SiftExtraction.max_num_orientations",
-                              &sift_extraction->max_num_orientations);
-  AddAndRegisterDefaultOption("SiftExtraction.upright",
-                              &sift_extraction->upright);
-  AddAndRegisterDefaultOption("SiftExtraction.domain_size_pooling",
-                              &sift_extraction->domain_size_pooling);
-  AddAndRegisterDefaultOption("SiftExtraction.dsp_min_scale",
-                              &sift_extraction->dsp_min_scale);
-  AddAndRegisterDefaultOption("SiftExtraction.dsp_max_scale",
-                              &sift_extraction->dsp_max_scale);
-  AddAndRegisterDefaultOption("SiftExtraction.dsp_num_scales",
-                              &sift_extraction->dsp_num_scales);
+  // AddAndRegisterDefaultOption("SiftExtraction.num_threads",
+  //                             &sift_extraction->num_threads);
+  // AddAndRegisterDefaultOption("SiftExtraction.use_gpu",
+  //                             &sift_extraction->use_gpu);
+  // AddAndRegisterDefaultOption("SiftExtraction.gpu_index",
+  //                             &sift_extraction->gpu_index);
+  // AddAndRegisterDefaultOption("SiftExtraction.max_image_size",
+  //                             &sift_extraction->max_image_size);
+  // AddAndRegisterDefaultOption("SiftExtraction.max_num_features",
+  //                             &sift_extraction->max_num_features);
+  // AddAndRegisterDefaultOption("SiftExtraction.first_octave",
+  //                             &sift_extraction->first_octave);
+  // AddAndRegisterDefaultOption("SiftExtraction.num_octaves",
+  //                             &sift_extraction->num_octaves);
+  // AddAndRegisterDefaultOption("SiftExtraction.octave_resolution",
+  //                             &sift_extraction->octave_resolution);
+  // AddAndRegisterDefaultOption("SiftExtraction.peak_threshold",
+  //                             &sift_extraction->peak_threshold);
+  // AddAndRegisterDefaultOption("SiftExtraction.edge_threshold",
+  //                             &sift_extraction->edge_threshold);
+  // AddAndRegisterDefaultOption("SiftExtraction.estimate_affine_shape",
+  //                             &sift_extraction->estimate_affine_shape);
+  // AddAndRegisterDefaultOption("SiftExtraction.max_num_orientations",
+  //                             &sift_extraction->max_num_orientations);
+  // AddAndRegisterDefaultOption("SiftExtraction.upright",
+  //                             &sift_extraction->upright);
+  // AddAndRegisterDefaultOption("SiftExtraction.domain_size_pooling",
+  //                             &sift_extraction->domain_size_pooling);
+  // AddAndRegisterDefaultOption("SiftExtraction.dsp_min_scale",
+  //                             &sift_extraction->dsp_min_scale);
+  // AddAndRegisterDefaultOption("SiftExtraction.dsp_max_scale",
+  //                             &sift_extraction->dsp_max_scale);
+  // AddAndRegisterDefaultOption("SiftExtraction.dsp_num_scales",
+  //                             &sift_extraction->dsp_num_scales);
 }
 
 void OptionManager::AddMatchingOptions() {
@@ -272,33 +272,34 @@ void OptionManager::AddMatchingOptions() {
   }
   added_match_options_ = true;
 
-  AddAndRegisterDefaultOption("SiftMatching.num_threads",
-                              &sift_matching->num_threads);
-  AddAndRegisterDefaultOption("SiftMatching.use_gpu", &sift_matching->use_gpu);
-  AddAndRegisterDefaultOption("SiftMatching.gpu_index",
-                              &sift_matching->gpu_index);
-  AddAndRegisterDefaultOption("SiftMatching.max_ratio",
-                              &sift_matching->max_ratio);
-  AddAndRegisterDefaultOption("SiftMatching.max_distance",
-                              &sift_matching->max_distance);
-  AddAndRegisterDefaultOption("SiftMatching.cross_check",
-                              &sift_matching->cross_check);
-  AddAndRegisterDefaultOption("SiftMatching.max_error",
-                              &sift_matching->max_error);
-  AddAndRegisterDefaultOption("SiftMatching.max_num_matches",
-                              &sift_matching->max_num_matches);
-  AddAndRegisterDefaultOption("SiftMatching.confidence",
-                              &sift_matching->confidence);
-  AddAndRegisterDefaultOption("SiftMatching.max_num_trials",
-                              &sift_matching->max_num_trials);
-  AddAndRegisterDefaultOption("SiftMatching.min_inlier_ratio",
-                              &sift_matching->min_inlier_ratio);
-  AddAndRegisterDefaultOption("SiftMatching.min_num_inliers",
-                              &sift_matching->min_num_inliers);
-  AddAndRegisterDefaultOption("SiftMatching.multiple_models",
-                              &sift_matching->multiple_models);
-  AddAndRegisterDefaultOption("SiftMatching.guided_matching",
-                              &sift_matching->guided_matching);
+  // AddAndRegisterDefaultOption("SiftMatching.num_threads",
+  //                             &sift_matching->num_threads);
+  // AddAndRegisterDefaultOption("SiftMatching.use_gpu",
+  // &sift_matching->use_gpu);
+  // AddAndRegisterDefaultOption("SiftMatching.gpu_index",
+  //                             &sift_matching->gpu_index);
+  // AddAndRegisterDefaultOption("SiftMatching.max_ratio",
+  //                             &sift_matching->max_ratio);
+  // AddAndRegisterDefaultOption("SiftMatching.max_distance",
+  //                             &sift_matching->max_distance);
+  // AddAndRegisterDefaultOption("SiftMatching.cross_check",
+  //                             &sift_matching->cross_check);
+  // AddAndRegisterDefaultOption("SiftMatching.max_error",
+  //                             &sift_matching->max_error);
+  // AddAndRegisterDefaultOption("SiftMatching.max_num_matches",
+  //                             &sift_matching->max_num_matches);
+  // AddAndRegisterDefaultOption("SiftMatching.confidence",
+  //                             &sift_matching->confidence);
+  // AddAndRegisterDefaultOption("SiftMatching.max_num_trials",
+  //                             &sift_matching->max_num_trials);
+  // AddAndRegisterDefaultOption("SiftMatching.min_inlier_ratio",
+  //                             &sift_matching->min_inlier_ratio);
+  // AddAndRegisterDefaultOption("SiftMatching.min_num_inliers",
+  //                             &sift_matching->min_num_inliers);
+  // AddAndRegisterDefaultOption("SiftMatching.multiple_models",
+  //                             &sift_matching->multiple_models);
+  // AddAndRegisterDefaultOption("SiftMatching.guided_matching",
+  //                             &sift_matching->guided_matching);
 }
 
 void OptionManager::AddExhaustiveMatchingOptions() {
@@ -309,8 +310,8 @@ void OptionManager::AddExhaustiveMatchingOptions() {
 
   AddMatchingOptions();
 
-  AddAndRegisterDefaultOption("ExhaustiveMatching.block_size",
-                              &exhaustive_matching->block_size);
+  // AddAndRegisterDefaultOption("ExhaustiveMatching.block_size",
+  //                             &exhaustive_matching->block_size);
 }
 
 void OptionManager::AddSequentialMatchingOptions() {
@@ -321,29 +322,29 @@ void OptionManager::AddSequentialMatchingOptions() {
 
   AddMatchingOptions();
 
-  AddAndRegisterDefaultOption("SequentialMatching.overlap",
-                              &sequential_matching->overlap);
-  AddAndRegisterDefaultOption("SequentialMatching.quadratic_overlap",
-                              &sequential_matching->quadratic_overlap);
-  AddAndRegisterDefaultOption("SequentialMatching.loop_detection",
-                              &sequential_matching->loop_detection);
-  AddAndRegisterDefaultOption("SequentialMatching.loop_detection_period",
-                              &sequential_matching->loop_detection_period);
-  AddAndRegisterDefaultOption("SequentialMatching.loop_detection_num_images",
-                              &sequential_matching->loop_detection_num_images);
-  AddAndRegisterDefaultOption(
-      "SequentialMatching.loop_detection_num_nearest_neighbors",
-      &sequential_matching->loop_detection_num_nearest_neighbors);
-  AddAndRegisterDefaultOption("SequentialMatching.loop_detection_num_checks",
-                              &sequential_matching->loop_detection_num_checks);
-  AddAndRegisterDefaultOption(
-      "SequentialMatching.loop_detection_num_images_after_verification",
-      &sequential_matching->loop_detection_num_images_after_verification);
-  AddAndRegisterDefaultOption(
-      "SequentialMatching.loop_detection_max_num_features",
-      &sequential_matching->loop_detection_max_num_features);
-  AddAndRegisterDefaultOption("SequentialMatching.vocab_tree_path",
-                              &sequential_matching->vocab_tree_path);
+  // AddAndRegisterDefaultOption("SequentialMatching.overlap",
+  //                             &sequential_matching->overlap);
+  // AddAndRegisterDefaultOption("SequentialMatching.quadratic_overlap",
+  //                             &sequential_matching->quadratic_overlap);
+  // AddAndRegisterDefaultOption("SequentialMatching.loop_detection",
+  //                             &sequential_matching->loop_detection);
+  // AddAndRegisterDefaultOption("SequentialMatching.loop_detection_period",
+  //                             &sequential_matching->loop_detection_period);
+  // AddAndRegisterDefaultOption("SequentialMatching.loop_detection_num_images",
+  //                             &sequential_matching->loop_detection_num_images);
+  // AddAndRegisterDefaultOption(
+  //     "SequentialMatching.loop_detection_num_nearest_neighbors",
+  //     &sequential_matching->loop_detection_num_nearest_neighbors);
+  // AddAndRegisterDefaultOption("SequentialMatching.loop_detection_num_checks",
+  //                             &sequential_matching->loop_detection_num_checks);
+  // AddAndRegisterDefaultOption(
+  //     "SequentialMatching.loop_detection_num_images_after_verification",
+  //     &sequential_matching->loop_detection_num_images_after_verification);
+  // AddAndRegisterDefaultOption(
+  //     "SequentialMatching.loop_detection_max_num_features",
+  //     &sequential_matching->loop_detection_max_num_features);
+  // AddAndRegisterDefaultOption("SequentialMatching.vocab_tree_path",
+  //                             &sequential_matching->vocab_tree_path);
 }
 
 void OptionManager::AddVocabTreeMatchingOptions() {
@@ -354,21 +355,21 @@ void OptionManager::AddVocabTreeMatchingOptions() {
 
   AddMatchingOptions();
 
-  AddAndRegisterDefaultOption("VocabTreeMatching.num_images",
-                              &vocab_tree_matching->num_images);
-  AddAndRegisterDefaultOption("VocabTreeMatching.num_nearest_neighbors",
-                              &vocab_tree_matching->num_nearest_neighbors);
-  AddAndRegisterDefaultOption("VocabTreeMatching.num_checks",
-                              &vocab_tree_matching->num_checks);
-  AddAndRegisterDefaultOption(
-      "VocabTreeMatching.num_images_after_verification",
-      &vocab_tree_matching->num_images_after_verification);
-  AddAndRegisterDefaultOption("VocabTreeMatching.max_num_features",
-                              &vocab_tree_matching->max_num_features);
-  AddAndRegisterDefaultOption("VocabTreeMatching.vocab_tree_path",
-                              &vocab_tree_matching->vocab_tree_path);
-  AddAndRegisterDefaultOption("VocabTreeMatching.match_list_path",
-                              &vocab_tree_matching->match_list_path);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.num_images",
+  //                             &vocab_tree_matching->num_images);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.num_nearest_neighbors",
+  //                             &vocab_tree_matching->num_nearest_neighbors);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.num_checks",
+  //                             &vocab_tree_matching->num_checks);
+  // AddAndRegisterDefaultOption(
+  //     "VocabTreeMatching.num_images_after_verification",
+  //     &vocab_tree_matching->num_images_after_verification);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.max_num_features",
+  //                             &vocab_tree_matching->max_num_features);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.vocab_tree_path",
+  //                             &vocab_tree_matching->vocab_tree_path);
+  // AddAndRegisterDefaultOption("VocabTreeMatching.match_list_path",
+  //                             &vocab_tree_matching->match_list_path);
 }
 
 void OptionManager::AddSpatialMatchingOptions() {
@@ -379,14 +380,14 @@ void OptionManager::AddSpatialMatchingOptions() {
 
   AddMatchingOptions();
 
-  AddAndRegisterDefaultOption("SpatialMatching.is_gps",
-                              &spatial_matching->is_gps);
-  AddAndRegisterDefaultOption("SpatialMatching.ignore_z",
-                              &spatial_matching->ignore_z);
-  AddAndRegisterDefaultOption("SpatialMatching.max_num_neighbors",
-                              &spatial_matching->max_num_neighbors);
-  AddAndRegisterDefaultOption("SpatialMatching.max_distance",
-                              &spatial_matching->max_distance);
+  // AddAndRegisterDefaultOption("SpatialMatching.is_gps",
+  //                             &spatial_matching->is_gps);
+  // AddAndRegisterDefaultOption("SpatialMatching.ignore_z",
+  //                             &spatial_matching->ignore_z);
+  // AddAndRegisterDefaultOption("SpatialMatching.max_num_neighbors",
+  //                             &spatial_matching->max_num_neighbors);
+  // AddAndRegisterDefaultOption("SpatialMatching.max_distance",
+  //                             &spatial_matching->max_distance);
 }
 
 void OptionManager::AddTransitiveMatchingOptions() {
@@ -397,10 +398,10 @@ void OptionManager::AddTransitiveMatchingOptions() {
 
   AddMatchingOptions();
 
-  AddAndRegisterDefaultOption("TransitiveMatching.batch_size",
-                              &transitive_matching->batch_size);
-  AddAndRegisterDefaultOption("TransitiveMatching.num_iterations",
-                              &transitive_matching->num_iterations);
+  // AddAndRegisterDefaultOption("TransitiveMatching.batch_size",
+  //                             &transitive_matching->batch_size);
+  // AddAndRegisterDefaultOption("TransitiveMatching.num_iterations",
+  //                             &transitive_matching->num_iterations);
 }
 
 void OptionManager::AddBundleAdjustmentOptions() {
@@ -440,111 +441,117 @@ void OptionManager::AddMapperOptions() {
   }
   added_mapper_options_ = true;
 
-  AddAndRegisterDefaultOption("Mapper.min_num_matches",
-                              &mapper->min_num_matches);
-  AddAndRegisterDefaultOption("Mapper.ignore_watermarks",
-                              &mapper->ignore_watermarks);
-  AddAndRegisterDefaultOption("Mapper.multiple_models",
-                              &mapper->multiple_models);
-  AddAndRegisterDefaultOption("Mapper.max_num_models", &mapper->max_num_models);
-  AddAndRegisterDefaultOption("Mapper.max_model_overlap",
-                              &mapper->max_model_overlap);
-  AddAndRegisterDefaultOption("Mapper.min_model_size", &mapper->min_model_size);
-  AddAndRegisterDefaultOption("Mapper.init_image_id1", &mapper->init_image_id1);
-  AddAndRegisterDefaultOption("Mapper.init_image_id2", &mapper->init_image_id2);
-  AddAndRegisterDefaultOption("Mapper.init_num_trials",
-                              &mapper->init_num_trials);
-  AddAndRegisterDefaultOption("Mapper.extract_colors", &mapper->extract_colors);
-  AddAndRegisterDefaultOption("Mapper.num_threads", &mapper->num_threads);
-  AddAndRegisterDefaultOption("Mapper.min_focal_length_ratio",
-                              &mapper->min_focal_length_ratio);
-  AddAndRegisterDefaultOption("Mapper.max_focal_length_ratio",
-                              &mapper->max_focal_length_ratio);
-  AddAndRegisterDefaultOption("Mapper.max_extra_param",
-                              &mapper->max_extra_param);
-  AddAndRegisterDefaultOption("Mapper.ba_refine_focal_length",
-                              &mapper->ba_refine_focal_length);
-  AddAndRegisterDefaultOption("Mapper.ba_refine_principal_point",
-                              &mapper->ba_refine_principal_point);
-  AddAndRegisterDefaultOption("Mapper.ba_refine_extra_params",
-                              &mapper->ba_refine_extra_params);
-  AddAndRegisterDefaultOption("Mapper.ba_local_num_images",
-                              &mapper->ba_local_num_images);
-  AddAndRegisterDefaultOption("Mapper.ba_local_max_num_iterations",
-                              &mapper->ba_local_max_num_iterations);
-  AddAndRegisterDefaultOption("Mapper.ba_global_use_pba",
-                              &mapper->ba_global_use_pba);
-  AddAndRegisterDefaultOption("Mapper.ba_global_pba_gpu_index",
-                              &mapper->ba_global_pba_gpu_index);
-  AddAndRegisterDefaultOption("Mapper.ba_global_images_ratio",
-                              &mapper->ba_global_images_ratio);
-  AddAndRegisterDefaultOption("Mapper.ba_global_points_ratio",
-                              &mapper->ba_global_points_ratio);
-  AddAndRegisterDefaultOption("Mapper.ba_global_images_freq",
-                              &mapper->ba_global_images_freq);
-  AddAndRegisterDefaultOption("Mapper.ba_global_points_freq",
-                              &mapper->ba_global_points_freq);
-  AddAndRegisterDefaultOption("Mapper.ba_global_max_num_iterations",
-                              &mapper->ba_global_max_num_iterations);
-  AddAndRegisterDefaultOption("Mapper.ba_global_max_refinements",
-                              &mapper->ba_global_max_refinements);
-  AddAndRegisterDefaultOption("Mapper.ba_global_max_refinement_change",
-                              &mapper->ba_global_max_refinement_change);
-  AddAndRegisterDefaultOption("Mapper.ba_local_max_refinements",
-                              &mapper->ba_local_max_refinements);
-  AddAndRegisterDefaultOption("Mapper.ba_local_max_refinement_change",
-                              &mapper->ba_local_max_refinement_change);
-  AddAndRegisterDefaultOption("Mapper.snapshot_path", &mapper->snapshot_path);
-  AddAndRegisterDefaultOption("Mapper.snapshot_images_freq",
-                              &mapper->snapshot_images_freq);
+  // AddAndRegisterDefaultOption("Mapper.min_num_matches",
+  //                             &mapper->min_num_matches);
+  // AddAndRegisterDefaultOption("Mapper.ignore_watermarks",
+  //                             &mapper->ignore_watermarks);
+  // AddAndRegisterDefaultOption("Mapper.multiple_models",
+  //                             &mapper->multiple_models);
+  // AddAndRegisterDefaultOption("Mapper.max_num_models",
+  // &mapper->max_num_models);
+  // AddAndRegisterDefaultOption("Mapper.max_model_overlap",
+  //                             &mapper->max_model_overlap);
+  // AddAndRegisterDefaultOption("Mapper.min_model_size",
+  // &mapper->min_model_size);
+  // AddAndRegisterDefaultOption("Mapper.init_image_id1",
+  // &mapper->init_image_id1);
+  // AddAndRegisterDefaultOption("Mapper.init_image_id2",
+  // &mapper->init_image_id2);
+  // AddAndRegisterDefaultOption("Mapper.init_num_trials",
+  //                             &mapper->init_num_trials);
+  // AddAndRegisterDefaultOption("Mapper.extract_colors",
+  // &mapper->extract_colors); AddAndRegisterDefaultOption("Mapper.num_threads",
+  // &mapper->num_threads);
+  // AddAndRegisterDefaultOption("Mapper.min_focal_length_ratio",
+  //                             &mapper->min_focal_length_ratio);
+  // AddAndRegisterDefaultOption("Mapper.max_focal_length_ratio",
+  //                             &mapper->max_focal_length_ratio);
+  // AddAndRegisterDefaultOption("Mapper.max_extra_param",
+  //                             &mapper->max_extra_param);
+  // AddAndRegisterDefaultOption("Mapper.ba_refine_focal_length",
+  //                             &mapper->ba_refine_focal_length);
+  // AddAndRegisterDefaultOption("Mapper.ba_refine_principal_point",
+  //                             &mapper->ba_refine_principal_point);
+  // AddAndRegisterDefaultOption("Mapper.ba_refine_extra_params",
+  //                             &mapper->ba_refine_extra_params);
+  // AddAndRegisterDefaultOption("Mapper.ba_local_num_images",
+  //                             &mapper->ba_local_num_images);
+  // AddAndRegisterDefaultOption("Mapper.ba_local_max_num_iterations",
+  //                             &mapper->ba_local_max_num_iterations);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_use_pba",
+  //                             &mapper->ba_global_use_pba);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_pba_gpu_index",
+  //                             &mapper->ba_global_pba_gpu_index);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_images_ratio",
+  //                             &mapper->ba_global_images_ratio);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_points_ratio",
+  //                             &mapper->ba_global_points_ratio);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_images_freq",
+  //                             &mapper->ba_global_images_freq);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_points_freq",
+  //                             &mapper->ba_global_points_freq);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_max_num_iterations",
+  //                             &mapper->ba_global_max_num_iterations);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_max_refinements",
+  //                             &mapper->ba_global_max_refinements);
+  // AddAndRegisterDefaultOption("Mapper.ba_global_max_refinement_change",
+  //                             &mapper->ba_global_max_refinement_change);
+  // AddAndRegisterDefaultOption("Mapper.ba_local_max_refinements",
+  //                             &mapper->ba_local_max_refinements);
+  // AddAndRegisterDefaultOption("Mapper.ba_local_max_refinement_change",
+  //                             &mapper->ba_local_max_refinement_change);
+  // AddAndRegisterDefaultOption("Mapper.snapshot_path",
+  // &mapper->snapshot_path);
+  // AddAndRegisterDefaultOption("Mapper.snapshot_images_freq",
+  //                             &mapper->snapshot_images_freq);
 
   // IncrementalMapper.
-  AddAndRegisterDefaultOption("Mapper.init_min_num_inliers",
-                              &mapper->mapper.init_min_num_inliers);
-  AddAndRegisterDefaultOption("Mapper.init_max_error",
-                              &mapper->mapper.init_max_error);
-  AddAndRegisterDefaultOption("Mapper.init_max_forward_motion",
-                              &mapper->mapper.init_max_forward_motion);
-  AddAndRegisterDefaultOption("Mapper.init_min_tri_angle",
-                              &mapper->mapper.init_min_tri_angle);
-  AddAndRegisterDefaultOption("Mapper.init_max_reg_trials",
-                              &mapper->mapper.init_max_reg_trials);
-  AddAndRegisterDefaultOption("Mapper.abs_pose_max_error",
-                              &mapper->mapper.abs_pose_max_error);
-  AddAndRegisterDefaultOption("Mapper.abs_pose_min_num_inliers",
-                              &mapper->mapper.abs_pose_min_num_inliers);
-  AddAndRegisterDefaultOption("Mapper.abs_pose_min_inlier_ratio",
-                              &mapper->mapper.abs_pose_min_inlier_ratio);
-  AddAndRegisterDefaultOption("Mapper.filter_max_reproj_error",
-                              &mapper->mapper.filter_max_reproj_error);
-  AddAndRegisterDefaultOption("Mapper.filter_min_tri_angle",
-                              &mapper->mapper.filter_min_tri_angle);
-  AddAndRegisterDefaultOption("Mapper.max_reg_trials",
-                              &mapper->mapper.max_reg_trials);
+  // AddAndRegisterDefaultOption("Mapper.init_min_num_inliers",
+  //                             &mapper->mapper.init_min_num_inliers);
+  // AddAndRegisterDefaultOption("Mapper.init_max_error",
+  //                             &mapper->mapper.init_max_error);
+  // AddAndRegisterDefaultOption("Mapper.init_max_forward_motion",
+  //                             &mapper->mapper.init_max_forward_motion);
+  // AddAndRegisterDefaultOption("Mapper.init_min_tri_angle",
+  //                             &mapper->mapper.init_min_tri_angle);
+  // AddAndRegisterDefaultOption("Mapper.init_max_reg_trials",
+  //                             &mapper->mapper.init_max_reg_trials);
+  // AddAndRegisterDefaultOption("Mapper.abs_pose_max_error",
+  //                             &mapper->mapper.abs_pose_max_error);
+  // AddAndRegisterDefaultOption("Mapper.abs_pose_min_num_inliers",
+  //                             &mapper->mapper.abs_pose_min_num_inliers);
+  // AddAndRegisterDefaultOption("Mapper.abs_pose_min_inlier_ratio",
+  //                             &mapper->mapper.abs_pose_min_inlier_ratio);
+  // AddAndRegisterDefaultOption("Mapper.filter_max_reproj_error",
+  //                             &mapper->mapper.filter_max_reproj_error);
+  // AddAndRegisterDefaultOption("Mapper.filter_min_tri_angle",
+  //                             &mapper->mapper.filter_min_tri_angle);
+  // AddAndRegisterDefaultOption("Mapper.max_reg_trials",
+  //                             &mapper->mapper.max_reg_trials);
 
   // IncrementalTriangulator.
-  AddAndRegisterDefaultOption("Mapper.tri_max_transitivity",
-                              &mapper->triangulation.max_transitivity);
-  AddAndRegisterDefaultOption("Mapper.tri_create_max_angle_error",
-                              &mapper->triangulation.create_max_angle_error);
-  AddAndRegisterDefaultOption("Mapper.tri_continue_max_angle_error",
-                              &mapper->triangulation.continue_max_angle_error);
-  AddAndRegisterDefaultOption("Mapper.tri_merge_max_reproj_error",
-                              &mapper->triangulation.merge_max_reproj_error);
-  AddAndRegisterDefaultOption("Mapper.tri_complete_max_reproj_error",
-                              &mapper->triangulation.complete_max_reproj_error);
-  AddAndRegisterDefaultOption("Mapper.tri_complete_max_transitivity",
-                              &mapper->triangulation.complete_max_transitivity);
-  AddAndRegisterDefaultOption("Mapper.tri_re_max_angle_error",
-                              &mapper->triangulation.re_max_angle_error);
-  AddAndRegisterDefaultOption("Mapper.tri_re_min_ratio",
-                              &mapper->triangulation.re_min_ratio);
-  AddAndRegisterDefaultOption("Mapper.tri_re_max_trials",
-                              &mapper->triangulation.re_max_trials);
-  AddAndRegisterDefaultOption("Mapper.tri_min_angle",
-                              &mapper->triangulation.min_angle);
-  AddAndRegisterDefaultOption("Mapper.tri_ignore_two_view_tracks",
-                              &mapper->triangulation.ignore_two_view_tracks);
+  // AddAndRegisterDefaultOption("Mapper.tri_max_transitivity",
+  //                             &mapper->triangulation.max_transitivity);
+  // AddAndRegisterDefaultOption("Mapper.tri_create_max_angle_error",
+  //                             &mapper->triangulation.create_max_angle_error);
+  // AddAndRegisterDefaultOption("Mapper.tri_continue_max_angle_error",
+  //                             &mapper->triangulation.continue_max_angle_error);
+  // AddAndRegisterDefaultOption("Mapper.tri_merge_max_reproj_error",
+  //                             &mapper->triangulation.merge_max_reproj_error);
+  // AddAndRegisterDefaultOption("Mapper.tri_complete_max_reproj_error",
+  //                             &mapper->triangulation.complete_max_reproj_error);
+  // AddAndRegisterDefaultOption("Mapper.tri_complete_max_transitivity",
+  //                             &mapper->triangulation.complete_max_transitivity);
+  // AddAndRegisterDefaultOption("Mapper.tri_re_max_angle_error",
+  //                             &mapper->triangulation.re_max_angle_error);
+  // AddAndRegisterDefaultOption("Mapper.tri_re_min_ratio",
+  //                             &mapper->triangulation.re_min_ratio);
+  // AddAndRegisterDefaultOption("Mapper.tri_re_max_trials",
+  //                             &mapper->triangulation.re_max_trials);
+  // AddAndRegisterDefaultOption("Mapper.tri_min_angle",
+  //                             &mapper->triangulation.min_angle);
+  // AddAndRegisterDefaultOption("Mapper.tri_ignore_two_view_tracks",
+  //                             &mapper->triangulation.ignore_two_view_tracks);
 }
 
 void OptionManager::AddPatchMatchStereoOptions() {
@@ -673,15 +680,16 @@ void OptionManager::AddRenderOptions() {
   }
   added_render_options_ = true;
 
-  AddAndRegisterDefaultOption("Render.min_track_len", &render->min_track_len);
-  AddAndRegisterDefaultOption("Render.max_error", &render->max_error);
-  AddAndRegisterDefaultOption("Render.refresh_rate", &render->refresh_rate);
-  AddAndRegisterDefaultOption("Render.adapt_refresh_rate",
-                              &render->adapt_refresh_rate);
-  AddAndRegisterDefaultOption("Render.image_connections",
-                              &render->image_connections);
-  AddAndRegisterDefaultOption("Render.projection_type",
-                              &render->projection_type);
+  // AddAndRegisterDefaultOption("Render.min_track_len",
+  // &render->min_track_len); AddAndRegisterDefaultOption("Render.max_error",
+  // &render->max_error); AddAndRegisterDefaultOption("Render.refresh_rate",
+  // &render->refresh_rate);
+  // AddAndRegisterDefaultOption("Render.adapt_refresh_rate",
+  //                             &render->adapt_refresh_rate);
+  // AddAndRegisterDefaultOption("Render.image_connections",
+  //                             &render->image_connections);
+  // AddAndRegisterDefaultOption("Render.projection_type",
+  //                             &render->projection_type);
 }
 
 void OptionManager::Reset() {
@@ -724,20 +732,20 @@ void OptionManager::ResetOptions(const bool reset_paths) {
     *image_path = "";
   }
   *image_reader = ImageReaderOptions();
-  *sift_extraction = SiftExtractionOptions();
-  *sift_matching = SiftMatchingOptions();
-  *exhaustive_matching = ExhaustiveMatchingOptions();
-  *sequential_matching = SequentialMatchingOptions();
-  *vocab_tree_matching = VocabTreeMatchingOptions();
-  *spatial_matching = SpatialMatchingOptions();
+  // *sift_extraction = SiftExtractionOptions();
+  // *sift_matching = SiftMatchingOptions();
+  // *exhaustive_matching = ExhaustiveMatchingOptions();
+  // *sequential_matching = SequentialMatchingOptions();
+  // *vocab_tree_matching = VocabTreeMatchingOptions();
+  // *spatial_matching = SpatialMatchingOptions();
   *transitive_matching = TransitiveMatchingOptions();
   *bundle_adjustment = BundleAdjustmentOptions();
-  *mapper = IncrementalMapperOptions();
+  // *mapper = IncrementalMapperOptions();
   *patch_match_stereo = mvs::PatchMatchOptions();
   *stereo_fusion = mvs::StereoFusionOptions();
   *poisson_meshing = mvs::PoissonMeshingOptions();
   *delaunay_meshing = mvs::DelaunayMeshingOptions();
-  *render = RenderOptions();
+  // *render = RenderOptions();
 }
 
 bool OptionManager::Check() {
@@ -753,24 +761,24 @@ bool OptionManager::Check() {
   if (added_image_options_)
     success = success && CHECK_OPTION_IMPL(ExistsDir(*image_path));
 
-  if (image_reader) success = success && image_reader->Check();
-  if (sift_extraction) success = success && sift_extraction->Check();
+  // if (image_reader) success = success && image_reader->Check();
+  // if (sift_extraction) success = success && sift_extraction->Check();
 
-  if (sift_matching) success = success && sift_matching->Check();
-  if (exhaustive_matching) success = success && exhaustive_matching->Check();
-  if (sequential_matching) success = success && sequential_matching->Check();
-  if (vocab_tree_matching) success = success && vocab_tree_matching->Check();
-  if (spatial_matching) success = success && spatial_matching->Check();
+  // if (sift_matching) success = success && sift_matching->Check();
+  // if (exhaustive_matching) success = success && exhaustive_matching->Check();
+  // if (sequential_matching) success = success && sequential_matching->Check();
+  // if (vocab_tree_matching) success = success && vocab_tree_matching->Check();
+  // if (spatial_matching) success = success && spatial_matching->Check();
 
-  if (bundle_adjustment) success = success && bundle_adjustment->Check();
-  if (mapper) success = success && mapper->Check();
+  // if (bundle_adjustment) success = success && bundle_adjustment->Check();
+  // if (mapper) success = success && mapper->Check();
 
   if (patch_match_stereo) success = success && patch_match_stereo->Check();
   if (stereo_fusion) success = success && stereo_fusion->Check();
   if (poisson_meshing) success = success && poisson_meshing->Check();
   if (delaunay_meshing) success = success && delaunay_meshing->Check();
 
-  if (render) success = success && render->Check();
+  // if (render) success = success && render->Check();
 
   return success;
 }
