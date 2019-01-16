@@ -41,7 +41,7 @@ COLMAP_ADD_SOURCES(
     database_cache.h database_cache.cc
     essential_matrix.h essential_matrix.cc
     gps.h gps.cc
-    graph_cut.h graph_cut.cc
+    # graph_cut.h graph_cut.cc
     homography_matrix.h homography_matrix.cc
     image.h image.cc
     image_reader.h image_reader.cc

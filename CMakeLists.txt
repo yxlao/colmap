@@ -299,7 +299,7 @@ endif()
 set(COLMAP_INTERNAL_LIBRARIES
     colmap
     flann
-    graclus
+    # graclus
     # lsd
     # pba
     poisson_recon
