@@ -33,7 +33,7 @@
 #define COLMAP_SRC_CONTROLLERS_INCREMENTAL_MAPPER_H_
 
 #include "base/reconstruction_manager.h"
-#include "sfm/incremental_mapper.h"
+// #include "sfm/incremental_mapper.h"
 #include "util/threading.h"
 
 namespace colmap {
@@ -178,9 +178,8 @@ size_t FilterImages(const IncrementalMapperOptions& options,
                     IncrementalMapper* mapper);
 
 // Globally complete and merge tracks in mapper.
-size_t CompleteAndMergeTracks(
-    const IncrementalMapperOptions& options,
-    IncrementalMapper* mapper);
+size_t CompleteAndMergeTracks(const IncrementalMapperOptions& options,
+                              IncrementalMapper* mapper);
 
 }  // namespace colmap
 

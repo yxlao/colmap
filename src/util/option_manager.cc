@@ -35,14 +35,14 @@
 #include <boost/property_tree/ini_parser.hpp>
 
 #include "base/image_reader.h"
-#include "controllers/incremental_mapper.h"
+// #include "controllers/incremental_mapper.h"
 #include "feature/extraction.h"
 #include "feature/matching.h"
 #include "feature/sift.h"
 #include "mvs/fusion.h"
 #include "mvs/meshing.h"
 #include "mvs/patch_match.h"
-#include "optim/bundle_adjustment.h"
+// #include "optim/bundle_adjustment.h"
 #include "ui/render_options.h"
 #include "util/misc.h"
 #include "util/version.h"
@@ -64,7 +64,7 @@ OptionManager::OptionManager() {
   // vocab_tree_matching.reset(new VocabTreeMatchingOptions());
   // spatial_matching.reset(new SpatialMatchingOptions());
   transitive_matching.reset(new TransitiveMatchingOptions());
-  bundle_adjustment.reset(new BundleAdjustmentOptions());
+  // bundle_adjustment.reset(new BundleAdjustmentOptions());
   // mapper.reset(new IncrementalMapperOptions());
   patch_match_stereo.reset(new mvs::PatchMatchOptions());
   stereo_fusion.reset(new mvs::StereoFusionOptions());
@@ -410,29 +410,29 @@ void OptionManager::AddBundleAdjustmentOptions() {
   }
   added_ba_options_ = true;
 
-  AddAndRegisterDefaultOption(
-      "BundleAdjustment.max_num_iterations",
-      &bundle_adjustment->solver_options.max_num_iterations);
-  AddAndRegisterDefaultOption(
-      "BundleAdjustment.max_linear_solver_iterations",
-      &bundle_adjustment->solver_options.max_linear_solver_iterations);
-  AddAndRegisterDefaultOption(
-      "BundleAdjustment.function_tolerance",
-      &bundle_adjustment->solver_options.function_tolerance);
-  AddAndRegisterDefaultOption(
-      "BundleAdjustment.gradient_tolerance",
-      &bundle_adjustment->solver_options.gradient_tolerance);
-  AddAndRegisterDefaultOption(
-      "BundleAdjustment.parameter_tolerance",
-      &bundle_adjustment->solver_options.parameter_tolerance);
-  AddAndRegisterDefaultOption("BundleAdjustment.refine_focal_length",
-                              &bundle_adjustment->refine_focal_length);
-  AddAndRegisterDefaultOption("BundleAdjustment.refine_principal_point",
-                              &bundle_adjustment->refine_principal_point);
-  AddAndRegisterDefaultOption("BundleAdjustment.refine_extra_params",
-                              &bundle_adjustment->refine_extra_params);
-  AddAndRegisterDefaultOption("BundleAdjustment.refine_extrinsics",
-                              &bundle_adjustment->refine_extrinsics);
+  // AddAndRegisterDefaultOption(
+  //     "BundleAdjustment.max_num_iterations",
+  //     &bundle_adjustment->solver_options.max_num_iterations);
+  // AddAndRegisterDefaultOption(
+  //     "BundleAdjustment.max_linear_solver_iterations",
+  //     &bundle_adjustment->solver_options.max_linear_solver_iterations);
+  // AddAndRegisterDefaultOption(
+  //     "BundleAdjustment.function_tolerance",
+  //     &bundle_adjustment->solver_options.function_tolerance);
+  // AddAndRegisterDefaultOption(
+  //     "BundleAdjustment.gradient_tolerance",
+  //     &bundle_adjustment->solver_options.gradient_tolerance);
+  // AddAndRegisterDefaultOption(
+  //     "BundleAdjustment.parameter_tolerance",
+  //     &bundle_adjustment->solver_options.parameter_tolerance);
+  // AddAndRegisterDefaultOption("BundleAdjustment.refine_focal_length",
+  //                             &bundle_adjustment->refine_focal_length);
+  // AddAndRegisterDefaultOption("BundleAdjustment.refine_principal_point",
+  //                             &bundle_adjustment->refine_principal_point);
+  // AddAndRegisterDefaultOption("BundleAdjustment.refine_extra_params",
+  //                             &bundle_adjustment->refine_extra_params);
+  // AddAndRegisterDefaultOption("BundleAdjustment.refine_extrinsics",
+  //                             &bundle_adjustment->refine_extrinsics);
 }
 
 void OptionManager::AddMapperOptions() {
@@ -739,7 +739,7 @@ void OptionManager::ResetOptions(const bool reset_paths) {
   // *vocab_tree_matching = VocabTreeMatchingOptions();
   // *spatial_matching = SpatialMatchingOptions();
   *transitive_matching = TransitiveMatchingOptions();
-  *bundle_adjustment = BundleAdjustmentOptions();
+  // *bundle_adjustment = BundleAdjustmentOptions();
   // *mapper = IncrementalMapperOptions();
   *patch_match_stereo = mvs::PatchMatchOptions();
   *stereo_fusion = mvs::StereoFusionOptions();

@@ -36,7 +36,7 @@ elseif(IS_GNU OR IS_CLANG)
 endif()
 
 add_subdirectory(FLANN) # BSD
-add_subdirectory(Graclus) # GNU
+# add_subdirectory(Graclus) # GNU
 # add_subdirectory(LSD) # GNU
 # add_subdirectory(PBA) # GNU
 add_subdirectory(PoissonRecon) # MIT

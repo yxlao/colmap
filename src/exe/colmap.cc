@@ -36,18 +36,21 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 
+#include "base/camera_rig.h"
 #include "base/similarity_transform.h"
+#include "base/undistortion.h"
 #include "controllers/automatic_reconstruction.h"
-#include "controllers/bundle_adjustment.h"
-#include "controllers/hierarchical_mapper.h"
+// #include "controllers/bundle_adjustment.h"
+// #include "controllers/hierarchical_mapper.h"
 #include "estimators/coordinate_frame.h"
 #include "feature/extraction.h"
 #include "feature/matching.h"
 #include "feature/utils.h"
+#include "mvs/fusion.h"
 #include "mvs/meshing.h"
 #include "mvs/patch_match.h"
 #include "retrieval/visual_index.h"
-#include "ui/main_window.h"
+// #include "ui/main_window.h"
 #include "util/opengl_utils.h"
 #include "util/version.h"
 
